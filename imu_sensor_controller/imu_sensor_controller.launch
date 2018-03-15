@@ -1,4 +1,8 @@
 <launch>
+  <node name="imubot"
+    pkg="imu_sensor_controller"
+    type="imubot"/>
+
   <!-- load configuration -->
   <rosparam command="load" file="$(find imu_sensor_controller)/imu_sensor_controller.yaml" />
 

@@ -3,6 +3,7 @@ project(imu_sensor_controller)
 
 find_package(catkin REQUIRED COMPONENTS
   controller_interface
+  controller_manager
   hardware_interface
   pluginlib
   realtime_tools
@@ -28,6 +29,9 @@ add_library(${PROJECT_NAME}
   src/imu_sensor_controller.cpp 
   include/imu_sensor_controller/imu_sensor_controller.h)
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES})
+
+add_executable(imubot test/imubot.cpp)
+target_link_libraries(imubot ${catkin_LIBRARIES})
 
 # Install
 install(DIRECTORY include/${PROJECT_NAME}/

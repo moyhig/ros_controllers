@@ -29,15 +29,23 @@
     </joint>
 
     <!-- Transmission is important to link the joints and the controller -->
-    <transmission name="${name}_joint_trans" type="SimpleTransmission">
-      <actuator name="${name}_joint_motor"/>
-      <joint name="${name}_joint"/>
-      <mechanicalReduction>1</mechanicalReduction>
-      <motorTorqueConstant>1</motorTorqueConstant>
+    <transmission name="${name}_joint_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${name}_joint">
+        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${name}_joint_motor">
+        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+        <motorTorqueConstant>1</motorTorqueConstant>
+      </actuator>
     </transmission>
 
     <gazebo reference="${name}_link">
       <material>Gazebo/Red</material>
+      <selfCollide>true</selfCollide>
+      <mu1 value="0.8" />
+      <mu2 value="0.8" />
     </gazebo>
   </xacro:macro>
 </robot>

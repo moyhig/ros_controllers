@@ -23,14 +23,14 @@ Robot model taken from http://wiki.ros.org/pr2_mechanism/Tutorials/SImple%20URDF
     </inertial>
     <visual>
       <geometry>
-        <box size="${width} 0.1 0.1"/>
+        <box size="0.1 ${width} 0.1"/>
       </geometry>
     </visual>
     <collision>
       <!-- origin is relative -->
       <origin xyz="0 0 0"/>
       <geometry>
-        <box size="${width} 0.1 0.1"/>
+        <box size="0.1 ${width} 0.1"/>
       </geometry>
     </collision>
   </link>
@@ -58,12 +58,17 @@ Robot model taken from http://wiki.ros.org/pr2_mechanism/Tutorials/SImple%20URDF
 
   <!-- Wheels -->
   <wheel name="wheel_0" parent="base" radius="${wheel_radius}" thickness="${thickness}">
-    <origin xyz="${width/2+axel_offset} 0 0" rpy="${-90 * deg_to_rad} 0 0"/>
+    <origin xyz="0 ${width/2+axel_offset} 0" rpy="${-90 * deg_to_rad} 0 0"/>
   </wheel>
   <wheel name="wheel_1" parent="base" radius="${wheel_radius}" thickness="${thickness}">
-    <origin xyz="${-width/2+axel_offset} 0 0" rpy="${-90 * deg_to_rad} 0 0"/>
+    <origin xyz="0 ${-width/2+axel_offset} 0" rpy="${-90 * deg_to_rad} 0 0"/>
   </wheel>
 
+  <!-- gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace></robotNamespace>
+    </plugin>
+  </gazebo -->
 
   <!-- Colour -->
   <gazebo reference="base_link">

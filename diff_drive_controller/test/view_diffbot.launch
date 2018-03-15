@@ -1,6 +1,6 @@
 <launch>
   <!-- start world -->
-  <include file="$(find gazebo_worlds)/launch/empty_world.launch"/>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch"/>
 
   <!-- load robot -->
   <param name="robot_description"
@@ -11,6 +11,9 @@
       pkg="diff_drive_controller"
       type="diffbot"/>
 
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
+
   <!-- Load controller config -->
   <rosparam command="load" file="$(find diff_drive_controller)/test/diffbot_controllers.yaml" />
 
@@ -20,7 +23,7 @@
         args="diffbot_controller" />
 
   <!-- push robot_description to factory and spawn robot in gazebo -->
-  <node name="spawn_single_link" pkg="gazebo" type="spawn_model" args="-urdf -param robot_description -model diffbot -z 0.5" respawn="false" output="screen" />
+  <node name="spawn_single_link" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model diffbot -z 0.5" respawn="false" output="screen" />
 
 </launch>
 
